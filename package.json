@@ -4,6 +4,7 @@
   "author": "Jose Andres <jmandreslopez@gmail.com>",
   "license": "MIT",
   "keywords": [
+    "hubspot",
     "odometer",
     "hubspot",
     "angular",
@@ -28,7 +29,7 @@
     "clean:install": "npm set progress=false && npm install",
     "commit": "git-cz",
     "build": "tsc -d && ngc",
-    "semantic-release": "semantic-release pre && npm run build && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "dependencies": {
     "odometer": "^0.4.8"
@@ -114,5 +115,6 @@
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "version": "0.0.0-development"
 }
