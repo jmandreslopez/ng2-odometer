@@ -1,0 +1,28 @@
+# Dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+/.idea
+/.vscode
+.project
+.classpath
+*.launch
+.settings/
+
+# Misc
+npm-debug.log
+npm-debug.log.*
+
+# Build and dist for now
+/dist
+/temp
+/logs
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# App
+src/**/*.js
+src/**/*.map
