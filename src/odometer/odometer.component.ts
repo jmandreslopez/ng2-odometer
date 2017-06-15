@@ -61,6 +61,7 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, OnChanges, After
     @Input() format: string = undefined;
     @Input() theme: string = undefined;
     @Input() value: number = undefined;
+    @Input() duration: number = undefined;
     private subscription: Subscription;
     private odometer: OdometerModel;
 
@@ -84,6 +85,7 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, OnChanges, After
                 el: this.container.nativeElement,
                 animation: this.config.animation,
                 value: this.config.value,
+                duration: this.config.duration,
                 format: this.config.format,
                 theme: this.config.theme,
             });
@@ -115,6 +117,11 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, OnChanges, After
         // Value
         if (!_.isUndefined(this.value)) {
             this.config.value = this.value;
+        }
+
+        // Duration
+        if (!_.isUndefined(this.duration)) {
+            this.config.duration = this.duration;
         }
 
         // Validate theme. If not part of the

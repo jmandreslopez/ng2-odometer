@@ -10,6 +10,7 @@ export interface Ng2OdometerConfigModel {
     format?: string;
     theme?: string;
     value?: number;
+    duration?: number;
     auto?: boolean;
 }
 
@@ -18,5 +19,6 @@ export class Ng2OdometerConfig implements Ng2OdometerConfigModel {
     format: string = '(,ddd)';
     theme?: string = 'default';
     value?: number = 0;
+    duration?: number = 2000;
     auto?: boolean = true;
 }
