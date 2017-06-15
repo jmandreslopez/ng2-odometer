@@ -1,11 +1,11 @@
 ///<reference path="odometer.d.ts" />
 
 /**
- * Created by Jose Andres on 02.23.17
+ * Created by Jose Andres on 6.15.17
  */
 
 import * as _ from 'lodash';
-import { Component, ViewEncapsulation, Input, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit, OnDestroy, OnChanges, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { OdometerModel } from './odometer.model';
 import { Ng2OdometerConfig, Ng2OdometerConfigModel } from './odometer.config';
@@ -52,10 +52,10 @@ const Odometer = require('odometer');
     ],
     template: `<div #container></div>`
 })
-export class Ng2OdometerComponent implements OnInit, OnDestroy, AfterViewInit {
+export class Ng2OdometerComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
     @ViewChild('container', { read: ElementRef }) container: ElementRef;
     @Input() number: number; // Required
-    @Input() observable: Observable<boolean>; // Required
+    @Input() observable: Observable<boolean> = undefined;
     @Input() config: Ng2OdometerConfigModel = {};
     @Input() animation: string = undefined;
     @Input() format: string = undefined;
@@ -89,6 +89,10 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, AfterViewInit {
                 format: this.config.format,
                 theme: this.config.theme,
             });
+
+            if (!_.isUndefined(this.number) && this.config.auto) {
+                this.odometer.update(this.number);
+            }
         }
     }
 
@@ -130,7 +134,7 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, AfterViewInit {
     public ngOnInit() {
 
         // Bind Observable
-        if (!_.isUndefined(this.observable)) {
+        if (!_.isUndefined(this.observable) && !this.config.auto) {
             this.subscription = this.observable.subscribe((trigger: boolean) => {
                 if (!_.isUndefined(trigger) && trigger) {
                     this.odometer.update(this.number);
@@ -146,6 +150,12 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, AfterViewInit {
     public ngOnDestroy() {
         if (!_.isUndefined(this.subscription)) {
             this.subscription.unsubscribe();
+        }
+    }
+
+    public ngOnChanges() {
+        if (!_.isUndefined(this.number) && !_.isUndefined(this.odometer) && this.config.auto) {
+            this.odometer.update(this.number);
         }
     }
 
