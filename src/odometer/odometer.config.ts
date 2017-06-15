@@ -1,5 +1,5 @@
 /**
- * Created by Jose Andres on 02.23.17
+ * Created by Jose Andres on 6.15.17
  */
 
 import { Component } from '@angular/core';
@@ -10,6 +10,7 @@ export interface Ng2OdometerConfigModel {
     format?: string;
     theme?: string;
     value?: number;
+    auto?: boolean;
 }
 
 export class Ng2OdometerConfig implements Ng2OdometerConfigModel {
@@ -17,4 +18,5 @@ export class Ng2OdometerConfig implements Ng2OdometerConfigModel {
     format: string = '(,ddd)';
     theme?: string = 'default';
     value?: number = 0;
+    auto?: boolean = true;
 }
