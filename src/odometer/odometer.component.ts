@@ -62,6 +62,7 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, OnChanges, After
     @Input() theme: string = undefined;
     @Input() value: number = undefined;
     @Input() duration: number = undefined;
+    @Input() auto: boolean = undefined;
     private subscription: Subscription;
     private odometer: OdometerModel;
 
@@ -122,6 +123,11 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, OnChanges, After
         // Duration
         if (!_.isUndefined(this.duration)) {
             this.config.duration = this.duration;
+        }
+
+        // Auto
+        if (!_.isUndefined(this.auto)) {
+            this.config.auto = this.auto;
         }
 
         // Validate theme. If not part of the
