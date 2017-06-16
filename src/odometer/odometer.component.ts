@@ -53,18 +53,20 @@ const Odometer = require('odometer');
     template: `<div #container></div>`
 })
 export class Ng2OdometerComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+    private subscription: Subscription;
+    private odometer: OdometerModel;
     @ViewChild('container', { read: ElementRef }) container: ElementRef;
     @Input() number: number; // Required
-    @Input() observable: Observable<boolean> = undefined;
     @Input() config: Ng2OdometerConfigModel = {};
+    @Input() observable: Observable<boolean> = undefined;
+
+    // Individual configuration attributes
     @Input() animation: string = undefined;
     @Input() format: string = undefined;
     @Input() theme: string = undefined;
     @Input() value: number = undefined;
     @Input() duration: number = undefined;
     @Input() auto: boolean = undefined;
-    private subscription: Subscription;
-    private odometer: OdometerModel;
 
     // Available themes
     private themes: Array<string> = [
@@ -112,7 +114,7 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, OnChanges, After
 
         // Theme
         if (!_.isUndefined(this.theme)) {
-            this.config.theme = this.theme;
+            this.config.theme = !_.includes(this.themes, this.theme) ? 'default' : this.theme;
         }
 
         // Value
@@ -136,6 +138,10 @@ export class Ng2OdometerComponent implements OnInit, OnDestroy, OnChanges, After
             this.config.theme = 'default';
         }
     }
+
+    // ***************************************
+    //  LIFECYCLES
+    // ***************************************
 
     public ngOnInit() {
 
