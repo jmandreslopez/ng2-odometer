@@ -6,7 +6,8 @@
 
 import * as _ from 'lodash';
 import { Component, ViewEncapsulation, Input, OnInit, OnDestroy, OnChanges, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { OdometerModel } from './odometer.model';
 import { Ng2OdometerConfig, Ng2OdometerConfigModel } from './odometer.config';
 import {
