@@ -88,7 +88,7 @@
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "ngm-cli": "0.4.4",
-    "node-sass": "^3.6.0",
+    "node-sass": "^4.14.1",
     "npm-run-all": "^4.0.1",
     "phantomjs-prebuilt": "^2.1.7",
     "pre-commit": "1.2.2",
